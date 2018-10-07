@@ -1,5 +1,6 @@
-﻿<html>
+﻿<html ng-app>
 <head>
+<%-  include partial_views/head.ejs %>
 </head>
 <body>
 <%-  include partial_views/header.ejs %>
@@ -12,7 +13,6 @@
     <li data-target="#demo" data-slide-to="1"></li>
     <li data-target="#demo" data-slide-to="2"></li>
   </ul>
-
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -38,7 +38,7 @@
 <div class="row">
 <div class="col-md-3">
 <ul class="list-group">
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li  class="list-group-item d-flex justify-content-between align-items-center">
     <a class="nav-link active show" data-toggle="tab" href="#mobile">Mobiles</a>
   </li>
    <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -80,6 +80,9 @@
 </div>
 
 <%-  include partial_views/footer.ejs %>
+
+ <input type = "text" ng-model="ModelName" placeholder = "Enter a name here">
+  <h2>{{ModelName}}</h2>     
 
 </body>
 </html>
