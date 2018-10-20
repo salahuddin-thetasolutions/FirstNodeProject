@@ -1,88 +1,162 @@
-﻿<html ng-app>
+﻿<!DOCTYPE html>
+<html ng-app="firstapp" ng-controller="myCtrl">
 <head>
 <%-  include partial_views/head.ejs %>
 </head>
 <body>
-<%-  include partial_views/header.ejs %>
-<div class="container-fluid">
-<div id="demo" class="carousel slide" data-ride="carousel">
+    <%-  include partial_views/header.ejs %>
+    <div class="container-fluid">
+        <div id="demo" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-  <!-- The slideshow -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="images/la.jpg" alt="Los Angeles">
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/la.jpg" alt="Los Angeles">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/chicago.jpg" alt="Chicago">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/ny.jpg" alt="New York">
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a class="nav-link active show" data-toggle="tab" href="#mobile">Mobiles</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a class="nav-link" data-toggle="tab" href="#shirts">Shirts</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9 tab-content">
+                //mobile
+                <div class="tab-pane fade active show" id="mobile">
+                    <div class="row">
+                        <div class="col-md-3">1</div>
+                        <div class="col-md-3">2</div>
+                        <div class="col-md-3">3</div>
+                    </div>
+                </div>
+                //end mobile
+                //shirts
+                <div class="tab-pane fade" id="shirts">
+                    <div class="row">
+                        <div class="col-md-3">shirt1</div>
+                        <div class="col-md-3">shirt2</div>
+                        <div class="col-md-3">shirt3</div>
+                    </div>
+                </div>
+                //end shirts
+            </div>
+
+        </div>
     </div>
-    <div class="carousel-item">
-      <img src="images/chicago.jpg" alt="Chicago">
+
+    <h1> <%= Name+" "+RollNo %> </h1>
+
+    <h3> <%= RollNo %> </h3>
+    <div class="row">
+        <div class="col-md-8">
+            <%-  include partial_views/item_menu.ejs %>
+        </div>
     </div>
-    <div class="carousel-item">
-      <img src="images/ny.jpg" alt="New York">
+
+    <%-  include partial_views/footer.ejs %>
+
+    <input type="text" ng-model="name" placeholder="Enter a name here">
+    <h2>{{name}}</h2>
+    <input type="text" ng-model="rollno" placeholder="Enter a Rollno">
+    <h2>{{rollno}}</h2>
+    <input type="number" ng-model="fees" placeholder="Enter a fees">
+    <input type="number" ng-model="month" placeholder="Enter a month">
+    <p>Total : {{fees*month}}</p>
+    <p ng-repeat="country in countries">{{country.name}}</p>
+    <table class="table table-border">
+        <thead>
+            <tr>
+                <th>Locale</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="country in countries | orderBy:'name'">
+                <td>{{country.locale}}</td>
+                <td>{{country.name | uppercase}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+    <lable>Name</lable>
+    <p>{{student.name}} </p>
+    <lable>Roll No</lable>
+    <p>{{student.rollno}} </p>
+    <div ng-repeat="subject in student.subjects">
+        <p> {{subject.name}} {{subject.marks}}</p>
+        <p ng-repeat="test in subject.tests"> {{test.testname}} {{test.markstest}}</p>
     </div>
-  </div>
+    <!--//Disabled -->
 
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
+    <input type="text" ng-model="disabledfield" value="{{disabledfield}}" />
+    <!--<button class="btn btn-success" ng-disabled="disabledfield">Disable</button>
+    <button class="btn btn-success" ng-show="disabledfield">Show</button>-->
+    <!--<button class="btn btn-success" ng-hide="disabledfield">Hide</button>-->
+    <button class="btn btn-success" ng-click="disabledfield = 1">Button Click</button>
 
-</div>
-<div class="row">
-<div class="col-md-3">
-<ul class="list-group">
-  <li  class="list-group-item d-flex justify-content-between align-items-center">
-    <a class="nav-link active show" data-toggle="tab" href="#mobile">Mobiles</a>
-  </li>
-   <li class="list-group-item d-flex justify-content-between align-items-center">
-    <a class="nav-link" data-toggle="tab" href="#shirts">Shirts</a>
-  </li>
-</ul>
-</div>
-<div class="col-md-9 tab-content">
-//mobile
-<div class="tab-pane fade active show" id="mobile">
-<div class="row">
-<div class="col-md-3">1</div>
-<div class="col-md-3">2</div>
-<div class="col-md-3">3</div>
-</div>
-</div>
-//end mobile
-//shirts
-<div class="tab-pane fade" id="shirts">
-<div class="row">
-<div class="col-md-3">shirt1</div>
-<div class="col-md-3">shirt2</div>
-<div class="col-md-3">shirt3</div>
-</div>
-</div>
-//end shirts
-</div>
 
-</div>
-</div>
+    <button ng-click="reset()">Reset</button>
+    <script>
+        var app = angular.module('firstapp', []);
+        app.controller('myCtrl', function ($scope) {
+            $scope.name = "Ali";
+            $scope.countries = [{ locale: 'en-US', name: 'United States' }, { locale: 'en-GB', name: 'United Kingdom' }, { locale: 'en-FR', name: 'France' }];
+            $scope.student = { name: 'SALAH UD DIN', rollno: '125Bht' };
+            $scope.student = {
+                firstName: "Mahesh",
+                lastName: "Parashar",
+                name: 'SALAH UD DIN',
+                rollno: '125Bht',
+                fees: 500,
+                subjects: [
+                    {
+                        name: 'Physics',
+                        marks: 70,
+                        tests: [{
+                            testname: 'test1', markstest: '12'
+                        }, {
+                            testname: 'test2', markstest: '125'
+                        }],
+                    },
+                    { name: 'Chemistry', marks: 80 },
+                    { name: 'Math', marks: 65 },
+                    { name: 'English', marks: 75 },
+                    { name: 'Hindi', marks: 67 }
+                ],
+            }
 
-<h1> <%= Name+" "+RollNo %> </h1>
-
-<h3> <%= RollNo %> </h3>
-<div class="row">
-	<div class="col-md-8">
-		<%-  include partial_views/item_menu.ejs %>
-	</div>
-</div>
-
-<%-  include partial_views/footer.ejs %>
-
- <input type = "text" ng-model="ModelName" placeholder = "Enter a name here">
-  <h2>{{ModelName}}</h2>     
-
+            $scope.reset = function () {
+                $scope.name = "";
+                $scope.countries =[];
+            }
+        });
+    </script>
 </body>
 </html>
